@@ -1,8 +1,11 @@
+import json
+
 from .baseimporter import BaseImporter
+from sshmanager.entity.machine import Machine
 
 
 class JsonImporter(BaseImporter):
-    def loads(self, data={}):
+    def loads(self, data='[]'):
         """
         Desserialize a JSON into a list of machines.
 
@@ -12,7 +15,12 @@ class JsonImporter(BaseImporter):
         :ret:
             A List of machines.
         """
-        pass
+        hosts = []
+
+        for host in json.loads(data):
+            hosts.append(Machine(**host))
+
+        return hosts
 
     def load(self, fp=None):
         """
