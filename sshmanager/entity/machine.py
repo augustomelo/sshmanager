@@ -14,3 +14,6 @@ class Machine():
         return (f'Machine[host: {self.host}, '
                 f'name: {self.name}, user: {self.user} '
                 f'protocol: {self.protocol}, tags: {self.tags}]')
+
+    def to_ssh_addr(self):
+        return (f'{self.name}@{self.host}')
